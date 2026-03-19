@@ -1,0 +1,68 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class FootballTeam {
+private: 
+	string name;
+	int goals;
+	int points;
+	bool coach;
+
+public:
+	FootballTeam(string n, int g, int p, bool c): name(n), goals(g), points(p), coach(c) {}
+	FootballTeam(): name("Команда"), goals(0), points(0), coach(false) {}
+
+	string getName() {return name;}
+	int getGoals() { return goals; }
+	int getPoints() { return points; }
+	bool getHasCoach() { return coach; }
+
+	void setName(string n) {
+		if (n.length() > 2) 
+			name = n; 
+		else 
+			cout << "Ошибка в названии"  << endl;
+	}
+	void setPoints(int p) {
+		if (p>=0) 
+			points = p;
+		else 
+			cout << "Ошибка очков" << endl;	
+	}
+	void setGoals(int g) {
+		if (g>=0)
+			goals = g;
+	}
+	void addGoals(int g) {
+		if (g>0)
+			goals += g;
+	}
+	void winMatch() {
+		points += 3;
+	}
+	void hCoach() {
+		coach = true;
+	}
+	void show() {
+		cout << name << " " << goals << "г. " << points << "очк. " << (coach?" есть тренер ":" тренер отсутсвует ") << endl;
+	}
+
+};
+
+int main()
+{
+	setlocale(LC_ALL, "RU");
+	FootballTeam a("Bayern", 10, 15, true);
+	FootballTeam b;
+	a.show();
+	b.show();
+	a.addGoals(5);
+	a.winMatch();
+	a.hCoach();
+	a.show();
+	b.setName("Gannover");
+	b.setPoints(9);
+	b.setGoals(4);
+	b.getGoals();
+}
